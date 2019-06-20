@@ -6,9 +6,9 @@ $('#demolist li').on('click', function(){
     console.log(selectedYear);
 });
 
-$('#pray2God').on('click', function(event){
+$('#submitBtn').on('click', function(event){
     if(selectedYear != null){
-        axios.post('/get-year', {
+        axios.post('/set-year', {
             year: selectedYear
         }).then(function (response) {
             console.log(response);
@@ -16,4 +16,19 @@ $('#pray2God').on('click', function(event){
             console.log(error);
         });
     }
+});
+
+$.get('/get-favourite').done((response) => { 
+    let favouriteTeam = response.favouriteTeam;
+    let index;
+    let table = $("table tbody");
+    let tableChildren = table.children();
+    console.log();
+    tableChildren.each( (i, el) => {
+        let cells = el.cells;
+        if(cells.item(1).innerHTML == favouriteTeam){
+            el.style.color="lightgreen";
+        }
+    });
+    
 });

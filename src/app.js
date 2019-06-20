@@ -24,6 +24,17 @@ app.use(express.json());
 let standingsYear = 2018;
 let matchDay = 1;
 let homeYear = 2018;
+let favouriteTeam = 'Arsenal FC';
+
+app.post('/signIn', (req, res) => {
+    console.log(req.body);
+    //Add to database here
+});
+
+app.get('/entry', (req, res) => {
+    res.render('entry',{});
+});
+
 
 app.get('/standings', (req, res) => {
     footballData.getStandingsFromCompetition({
@@ -38,10 +49,14 @@ app.get('/standings', (req, res) => {
     });
 });
 
+app.get('/get-favourite', (req, res) => {
+    res.json({favouriteTeam});
+});
+
 app.get('/home',(req,res)=>{
     footballData.getMatchesFromCompetition({
         competitionId: 2021,
-        season: standingsYear,
+        season: homeYear,
         matchday: matchDay,
     }).then((data) => {
         response = data.matches;
@@ -51,8 +66,8 @@ app.get('/home',(req,res)=>{
     });
 });
 
-app.post('/get-year', async (req, res) => {
-    year = await req.body.year;
+app.post('/set-year', async (req, res) => {
+    standingsYear = await req.body.year;
 });
 
 app.listen(port, () => {
