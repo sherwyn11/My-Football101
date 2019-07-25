@@ -61,7 +61,8 @@ app.get('/home',(req,res)=>{
     }).then((data) => {
         response = data.matches;
         res.render('home', {
-            response
+            response: response,
+            favTeam: favouriteTeam
         });
     });
 });
