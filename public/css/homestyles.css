@@ -188,6 +188,9 @@ html {
     color: #cccccc;
   }
   
+  option{
+      text-align: center;
+  }
   
   
   /* ANIMATIONS */

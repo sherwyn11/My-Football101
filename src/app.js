@@ -1,6 +1,5 @@
 const FootballData = require('footballdata-api-v2').default;
 require('dotenv').config(); //To get Key for API
-console.log(process.env.myKey)
 const footballData = new FootballData(process.env.myKey);
 const express = require('express');
 const hbs = require('hbs');
@@ -9,12 +8,6 @@ const path = require('path');
 const mongodb = require('mongodb')
 require('./db/mongoose')
 const User = require('./models/user')
-
-// const Mongoclient = mongodb.MongoClient
-// const connectionURL = 'mongodb://127.0.0.1:27017'
-// const databaseName = 'football_database'
-// const bodyParser = require('body-parser');
-// const urlEncodedParser = bodyParser.urlencoded({extended: true});
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -36,6 +29,19 @@ let matchDay = 1;
 let homeYear = 2019;
 let favouriteTeam;
 
+
+function sort (response){
+    i = 0
+    while(i < response.length){
+        if(response[i].homeTeam.name === favouriteTeam){
+            response.unshift(response[i])
+        }
+        i++;
+    }
+
+    return response
+}
+
 app.post('/signIn', async (req, res) => {
     Name = await req.body.name;
     Contact = await req.body.con;
@@ -55,38 +61,15 @@ app.post('/signIn', async (req, res) => {
     })
     console.log(user)
     favouriteTeam = FavTeam
-    console.log(favouriteTeam)
+    //console.log(favouriteTeam)
 
     user.save().then(() => {
-        //console.log(user)
+        res.send(user)
     }).catch((error) =>{
         console.log("error",error.message)
-        res.send(error.message)
-        //console.log("Error",error.message)
+        res.status(400).send(error.message)
     })
 
-    
-    //console.log(req.body)
-    // Mongoclient.connect(connectionURL, {useNewUrlParser: true}, (error,client) => {
-    //     if(error){
-    //        return console.log('Unable to connect to database')
-    //     }
-    
-    //     const db = client.db(databaseName)
-        
-    //     db.collection('users').insertOne({
-    //         Name: name,
-    //         Contact: contact,
-    //         Email: email,
-    //         Password: password,
-    //         favouriteTeam: favTeam
-    //     }, )
-
-    //     app.use(cookieSession({
-    //         name: 'session',
-    //         keys: ['key1', 'key2']
-    //       }))
-    // })
 });
 
 app.get('/entry', (req, res) => {
@@ -103,6 +86,48 @@ app.get('/entry', (req, res) => {
 });
 
 
+app.get('/login', (req, res) => {
+    res.render('login',{
+    });
+});
+
+app.post('/LogIn', async (req, res) => {
+    Email = await req.body.e;
+    pass = await req.body.p;
+    Password = md5(pass)
+
+    console.log(Email,pass)
+
+    // User.find({email:Email}).then((users)=>{
+    //     console.log(users)
+    // }).catch((e) => {
+    //     res.status(500).send()
+    // })
+
+    gotuser = []
+    obj = {}
+
+    User.find({email:Email,password:Password}).then((user)=>{ 
+        if(user.length == 0){
+            return res.send(true)
+        }else{
+            //favouriteTeam = user[0].favTeam
+            return res.send(false)
+        }     
+    }).catch((e)=>{
+        console.log(e)
+        res.status(500).send()
+    })
+});
+
+app.get('/users',(req,res) => {
+    User.find({}).then((users)=>{
+        console.log(users)
+    }).catch((e) => {
+
+    })
+})
+
 app.get('/standings', (req, res) => {
     footballData.getStandingsFromCompetition({
         competitionId: 2021,
@@ -110,7 +135,6 @@ app.get('/standings', (req, res) => {
         standingType: 'TOTAL',
     }).then((data) => {
         response = data.standings[0].table;
-        console.log("RESPONSE",response)
         res.render('standings', {
             response
         });
@@ -128,7 +152,9 @@ app.get('/home',(req,res)=>{
         matchday: matchDay,
     }).then((data) => {
         response = data.matches;
-        console.log(response)
+        // console.log(response[0].homeTeam.name)
+        response = sort(response)
+        console.log('SORTEDD?')
         res.render('home', {
             response
         });
