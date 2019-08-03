@@ -1,276 +1,311 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Standings</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="/css/styles.css">
-
+  <title>Standings</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>      
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="navbar transparent navbar-inverse">
-        <a class="navbar-brand" href="#" id="img1"><img src = "../img/download.jpeg"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item ">
-              <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/">Events</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="/standings">Standings</a>
-            </li>
-          </ul>
-        </div>
-        </div>
-      </nav>    
-    <h1>Standings</h1>
-</body>
-
-<div class="table">
-<body>
+    <div class="navbar transparent navbar-inverse">
+      <a class="navbar-brand" href="#" id="img1"><img src = "../img/download.jpeg"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item ">
+            <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/">Events</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/standings">Standings</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav> 
+  <div class="input-group">                                            
+    <input type="TextBox" ID="datebox" Class="form-control"></input>
+    <div class="input-group-btn">
+      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+        <span class="caret"></span>
+      </button>
+      <ul id="demolist" class="dropdown-menu">
+        <li><a>2017-2018</a></li>
+        <li><a>2018-2019</a></li>
+        <li><a>2019-2020</a></li>
+      </ul>
+    </div>
+    <a href="/standings"><button id="submitBtn" type="button" class="btn btn-dark">Submit</button></a>
+  </div>
+  <h1>Standings</h1>
+  <div class="table">
     <table class="table table-dark">
-  <thead>
-    <tr>
-      <th scope="col">Position</th>
-      <th scope="col">Club</th>
-      <th scope="col">P</th>
-      <th scope="col">W</th>
-      <th scope="col">D</th>
-      <th scope="col">L</th>
-      <th scope="col">GF</th>
-      <th scope="col">GA</th>
-      <th scope="col">PTS</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>{{data0.team_name}}</td>
-      <td>{{data0.overall_league_payed}}</td>
-      <td>{{data0.overall_league_W}}</td>
-      <td>{{data0.overall_league_D}}</td>
-      <td>{{data0.overall_league_L}}</td>
-      <td>{{data0.overall_league_GF}}</td>
-      <td>{{data0.overall_league_GA}}</td>
-      <td>{{data0.overall_league_PTS}}</td>
-    </tr>
-   <tr>
-      <th scope="row">2</th>
-      <td>{{data1.team_name}}</td>
-      <td>{{data1.overall_league_payed}}</td>
-      <td>{{data1.overall_league_W}}</td>
-      <td>{{data1.overall_league_D}}</td>
-      <td>{{data1.overall_league_L}}</td>
-      <td>{{data1.overall_league_GF}}</td>
-      <td>{{data1.overall_league_GA}}</td>
-      <td>{{data1.overall_league_PTS}}</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>{{data2.team_name}}</td>
-      <td>{{data2.overall_league_payed}}</td>
-      <td>{{data2.overall_league_W}}</td>
-      <td>{{data2.overall_league_D}}</td>
-      <td>{{data2.overall_league_L}}</td>
-      <td>{{data2.overall_league_GF}}</td>
-      <td>{{data2.overall_league_GA}}</td>
-      <td>{{data2.overall_league_PTS}}</td>
-    </tr>
-    <tr>
-      <th scope="row">4</th>
-      <td>{{data3.team_name}}</td>
-      <td>{{data3.overall_league_payed}}</td>
-      <td>{{data3.overall_league_W}}</td>
-      <td>{{data3.overall_league_D}}</td>
-      <td>{{data3.overall_league_L}}</td>
-      <td>{{data3.overall_league_GF}}</td>
-      <td>{{data3.overall_league_GA}}</td>
-      <td>{{data3.overall_league_PTS}}</td>
-    </tr>
-    <tr>
-      <th scope="row">5</th>
-      <td>{{data4.team_name}}</td>
-      <td>{{data4.overall_league_payed}}</td>
-      <td>{{data4.overall_league_W}}</td>
-      <td>{{data4.overall_league_D}}</td>
-      <td>{{data4.overall_league_L}}</td>
-      <td>{{data4.overall_league_GF}}</td>
-      <td>{{data4.overall_league_GA}}</td>
-      <td>{{data4.overall_league_PTS}}</td>
-    </tr>
-    <tr>
-      <th scope="row">6</th>
-      <td>{{data5.team_name}}</td>
-      <td>{{data5.overall_league_payed}}</td>
-      <td>{{data5.overall_league_W}}</td>
-      <td>{{data5.overall_league_D}}</td>
-      <td>{{data5.overall_league_L}}</td>
-      <td>{{data5.overall_league_GF}}</td>
-      <td>{{data5.overall_league_GA}}</td>
-      <td>{{data5.overall_league_PTS}}</td>
-    </tr>
-    <tr>
-      <th scope="row">7</th>
-      <td>{{data6.team_name}}</td>
-      <td>{{data6.overall_league_payed}}</td>
-      <td>{{data6.overall_league_W}}</td>
-      <td>{{data6.overall_league_D}}</td>
-      <td>{{data6.overall_league_L}}</td>
-      <td>{{data6.overall_league_GF}}</td>
-      <td>{{data6.overall_league_GA}}</td>
-      <td>{{data6.overall_league_PTS}}</td>
-    </tr>
-    <tr>
-      <th scope="row">8</th>
-      <td>{{data7.team_name}}</td>
-      <td>{{data7.overall_league_payed}}</td>
-      <td>{{data7.overall_league_W}}</td>
-      <td>{{data7.overall_league_D}}</td>
-      <td>{{data7.overall_league_L}}</td>
-      <td>{{data7.overall_league_GF}}</td>
-      <td>{{data7.overall_league_GA}}</td>
-      <td>{{data7.overall_league_PTS}}</td>
-    </tr>
-    <tr>
-      <th scope="row">9</th>
-      <td>{{data8.team_name}}</td>
-      <td>{{data8.overall_league_payed}}</td>
-      <td>{{data8.overall_league_W}}</td>
-      <td>{{data8.overall_league_D}}</td>
-      <td>{{data8.overall_league_L}}</td>
-      <td>{{data8.overall_league_GF}}</td>
-      <td>{{data8.overall_league_GA}}</td>
-      <td>{{data8.overall_league_PTS}}</td>
-    </tr>
-    <tr>
-      <th scope="row">10</th>
-      <td>{{data9.team_name}}</td>
-      <td>{{data9.overall_league_payed}}</td>
-      <td>{{data9.overall_league_W}}</td>
-      <td>{{data9.overall_league_D}}</td>
-      <td>{{data9.overall_league_L}}</td>
-      <td>{{data9.overall_league_GF}}</td>
-      <td>{{data9.overall_league_GA}}</td>
-      <td>{{data9.overall_league_PTS}}</td>
-    </tr>
-    <tr>
-      <th scope="row">11</th>
-      <td>{{data10.team_name}}</td>
-      <td>{{data10.overall_league_payed}}</td>
-      <td>{{data10.overall_league_W}}</td>
-      <td>{{data10.overall_league_D}}</td>
-      <td>{{data10.overall_league_L}}</td>
-      <td>{{data10.overall_league_GF}}</td>
-      <td>{{data10.overall_league_GA}}</td>
-      <td>{{data10.overall_league_PTS}}</td>
-    </tr>
-    <tr>
-      <th scope="row">12</th>
-      <td>{{data11.team_name}}</td>
-      <td>{{data11.overall_league_payed}}</td>
-      <td>{{data11.overall_league_W}}</td>
-      <td>{{data11.overall_league_D}}</td>
-      <td>{{data11.overall_league_L}}</td>
-      <td>{{data11.overall_league_GF}}</td>
-      <td>{{data11.overall_league_GA}}</td>
-      <td>{{data11.overall_league_PTS}}</td>
-    </tr>
-    <tr>
-      <th scope="row">13</th>
-      <td>{{data12.team_name}}</td>
-      <td>{{data12.overall_league_payed}}</td>
-      <td>{{data12.overall_league_W}}</td>
-      <td>{{data12.overall_league_D}}</td>
-      <td>{{data12.overall_league_L}}</td>
-      <td>{{data12.overall_league_GF}}</td>
-      <td>{{data12.overall_league_GA}}</td>
-      <td>{{data12.overall_league_PTS}}</td>
-    </tr>
-    <tr>
-      <th scope="row">14</th>
-      <td>{{data13.team_name}}</td>
-      <td>{{data13.overall_league_payed}}</td>
-      <td>{{data13.overall_league_W}}</td>
-      <td>{{data13.overall_league_D}}</td>
-      <td>{{data13.overall_league_L}}</td>
-      <td>{{data13.overall_league_GF}}</td>
-      <td>{{data13.overall_league_GA}}</td>
-      <td>{{data13.overall_league_PTS}}</td>
-    </tr>
-    <tr>
-      <th scope="row">15</th>
-      <td>{{data14.team_name}}</td>
-      <td>{{data14.overall_league_payed}}</td>
-      <td>{{data14.overall_league_W}}</td>
-      <td>{{data14.overall_league_D}}</td>
-      <td>{{data14.overall_league_L}}</td>
-      <td>{{data14.overall_league_GF}}</td>
-      <td>{{data14.overall_league_GA}}</td>
-      <td>{{data14.overall_league_PTS}}</td>
-    </tr>
-    <tr>
-      <th scope="row">16</th>
-      <td>{{data15.team_name}}</td>
-      <td>{{data15.overall_league_payed}}</td>
-      <td>{{data15.overall_league_W}}</td>
-      <td>{{data15.overall_league_D}}</td>
-      <td>{{data15.overall_league_L}}</td>
-      <td>{{data15.overall_league_GF}}</td>
-      <td>{{data15.overall_league_GA}}</td>
-      <td>{{data15.overall_league_PTS}}</td>
-    </tr>
-    <tr>
-      <th scope="row">17</th>
-      <td>{{data16.team_name}}</td>
-      <td>{{data16.overall_league_payed}}</td>
-      <td>{{data16.overall_league_W}}</td>
-      <td>{{data16.overall_league_D}}</td>
-      <td>{{data16.overall_league_L}}</td>
-      <td>{{data16.overall_league_GF}}</td>
-      <td>{{data16.overall_league_GA}}</td>
-      <td>{{data16.overall_league_PTS}}</td>
-    </tr>
-    <tr>
-      <th scope="row">18</th>
-      <td>{{data17.team_name}}</td>
-      <td>{{data17.overall_league_payed}}</td>
-      <td>{{data17.overall_league_W}}</td>
-      <td>{{data17.overall_league_D}}</td>
-      <td>{{data17.overall_league_L}}</td>
-      <td>{{data17.overall_league_GF}}</td>
-      <td>{{data17.overall_league_GA}}</td>
-      <td>{{data17.overall_league_PTS}}</td>
-    </tr>
-    <tr>
-      <th scope="row">19</th>
-      <td>{{data18.team_name}}</td>
-      <td>{{data18.overall_league_payed}}</td>
-      <td>{{data18.overall_league_W}}</td>
-      <td>{{data18.overall_league_D}}</td>
-      <td>{{data18.overall_league_L}}</td>
-      <td>{{data18.overall_league_GF}}</td>
-      <td>{{data18.overall_league_GA}}</td>
-      <td>{{data18.overall_league_PTS}}</td>
-    </tr>
-    <tr>
-      <th scope="row">20</th>
-      <td>{{data19.team_name}}</td>
-      <td>{{data19.overall_league_payed}}</td>
-      <td>{{data19.overall_league_W}}</td>
-      <td>{{data19.overall_league_D}}</td>
-      <td>{{data19.overall_league_L}}</td>
-      <td>{{data19.overall_league_GF}}</td>
-      <td>{{data19.overall_league_GA}}</td>
-      <td>{{data19.overall_league_PTS}}</td>
-    </tr>
-  </tbody>
-</table>
+      <thead>
+        <tr>
+          <th scope="col">Position</th>
+          <th scope="col">Club</th>
+          <th scope="col">P</th>
+          <th scope="col">W</th>
+          <th scope="col">D</th>
+          <th scope="col">L</th>
+          <th scope="col">GF</th>
+          <th scope="col">GA</th>
+          <th scope="col">GD</th>
+          <th scope="col">PTS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>{{response.[0].team.name}}</td>
+          <td>{{response.[0].playedGames}}</td>
+          <td>{{response.[0].won}}</td>
+          <td>{{response.[0].draw}}</td>
+          <td>{{response.[0].lost}}</td>
+          <td>{{response.[0].goalsFor}}</td>
+          <td>{{response.[0].goalsAgainst}}</td>
+          <td>{{response.[0].goalDifference}}</td>
+          <td>{{response.[0].points}}</td>
+        </tr>
+      <tr>
+          <th scope="row">2</th>
+          <td>{{response.[1].team.name}}</td>
+          <td>{{response.[1].playedGames}}</td>
+          <td>{{response.[1].won}}</td>
+          <td>{{response.[1].draw}}</td>
+          <td>{{response.[1].lost}}</td>
+          <td>{{response.[1].goalsFor}}</td>
+          <td>{{response.[1].goalsAgainst}}</td>
+          <td>{{response.[1].goalDifference}}</td>
+          <td>{{response.[1].points}}</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>{{response.[2].team.name}}</td>
+          <td>{{response.[2].playedGames}}</td>
+          <td>{{response.[2].won}}</td>
+          <td>{{response.[2].draw}}</td>
+          <td>{{response.[2].lost}}</td>
+          <td>{{response.[2].goalsFor}}</td>
+          <td>{{response.[2].goalsAgainst}}</td>
+          <td>{{response.[2].goalDifference}}</td>
+          <td>{{response.[2].points}}</td>
+        </tr>
+        <tr>
+          <th scope="row">4</th>
+          <td>{{response.[3].team.name}}</td>
+          <td>{{response.[3].playedGames}}</td>
+          <td>{{response.[3].won}}</td>
+          <td>{{response.[3].draw}}</td>
+          <td>{{response.[3].lost}}</td>
+          <td>{{response.[3].goalsFor}}</td>
+          <td>{{response.[3].goalsAgainst}}</td>
+          <td>{{response.[3].goalDifference}}</td>
+          <td>{{response.[3].points}}</td>
+        </tr>
+        <tr>
+          <th scope="row">5</th>
+          <td>{{response.[4].team.name}}</td>
+          <td>{{response.[4].playedGames}}</td>
+          <td>{{response.[4].won}}</td>
+          <td>{{response.[4].draw}}</td>
+          <td>{{response.[4].lost}}</td>
+          <td>{{response.[4].goalsFor}}</td>
+          <td>{{response.[4].goalsAgainst}}</td>
+          <td>{{response.[4].goalDifference}}</td>
+          <td>{{response.[4].points}}</td>
+        </tr>
+        <tr>
+          <th scope="row">6</th>
+          <td>{{response.[5].team.name}}</td>
+          <td>{{response.[5].playedGames}}</td>
+          <td>{{response.[5].won}}</td>
+          <td>{{response.[5].draw}}</td>
+          <td>{{response.[5].lost}}</td>
+          <td>{{response.[5].goalsFor}}</td>
+          <td>{{response.[5].goalsAgainst}}</td>
+          <td>{{response.[5].goalDifference}}</td>
+          <td>{{response.[5].points}}</td>
+        </tr>
+        <tr>
+          <th scope="row">7</th>
+          <td>{{response.[6].team.name}}</td>
+          <td>{{response.[6].playedGames}}</td>
+          <td>{{response.[6].won}}</td>
+          <td>{{response.[6].draw}}</td>
+          <td>{{response.[6].lost}}</td>
+          <td>{{response.[6].goalsFor}}</td>
+          <td>{{response.[6].goalsAgainst}}</td>
+          <td>{{response.[6].goalDifference}}</td>
+          <td>{{response.[6].points}}</td>
+        </tr>
+        <tr>
+          <th scope="row">8</th>
+          <td>{{response.[7].team.name}}</td>
+          <td>{{response.[7].playedGames}}</td>
+          <td>{{response.[7].won}}</td>
+          <td>{{response.[7].draw}}</td>
+          <td>{{response.[7].lost}}</td>
+          <td>{{response.[7].goalsFor}}</td>
+          <td>{{response.[7].goalsAgainst}}</td>
+          <td>{{response.[7].goalDifference}}</td>
+          <td>{{response.[7].points}}</td>
+        </tr>
+        <tr>
+          <th scope="row">9</th>
+          <td>{{response.[8].team.name}}</td>
+          <td>{{response.[8].playedGames}}</td>
+          <td>{{response.[8].won}}</td>
+          <td>{{response.[8].draw}}</td>
+          <td>{{response.[8].lost}}</td>
+          <td>{{response.[8].goalsFor}}</td>
+          <td>{{response.[8].goalsAgainst}}</td>
+          <td>{{response.[8].goalDifference}}</td>
+          <td>{{response.[8].points}}</td>
+        </tr>
+        <tr>
+          <th scope="row">10</th>
+          <td>{{response.[9].team.name}}</td>
+          <td>{{response.[9].playedGames}}</td>
+          <td>{{response.[9].won}}</td>
+          <td>{{response.[9].draw}}</td>
+          <td>{{response.[9].lost}}</td>
+          <td>{{response.[9].goalsFor}}</td>
+          <td>{{response.[9].goalsAgainst}}</td>
+          <td>{{response.[9].goalDifference}}</td>
+          <td>{{response.[9].points}}</td>
+        </tr>
+        <tr> 
+          <th scope="row">11</th>
+          <td>{{response.[10].team.name}}</td>
+          <td>{{response.[10].playedGames}}</td>
+          <td>{{response.[10].won}}</td>
+          <td>{{response.[10].draw}}</td>
+          <td>{{response.[10].lost}}</td>
+          <td>{{response.[10].goalsFor}}</td>
+          <td>{{response.[10].goalsAgainst}}</td>
+          <td>{{response.[10].goalDifference}}</td>
+          <td>{{response.[10].points}}</td>
+        </tr>
+        <tr>
+          <th scope="row">12</th>
+          <td>{{response.[11].team.name}}</td>
+          <td>{{response.[11].playedGames}}</td>
+          <td>{{response.[11].won}}</td>
+          <td>{{response.[11].draw}}</td>
+          <td>{{response.[11].lost}}</td>
+          <td>{{response.[11].goalsFor}}</td>
+          <td>{{response.[11].goalsAgainst}}</td>
+          <td>{{response.[11].goalDifference}}</td>
+          <td>{{response.[11].points}}</td>
+        </tr>
+        <tr>
+          <th scope="row">13</th>
+          <td>{{response.[12].team.name}}</td>
+          <td>{{response.[12].playedGames}}</td>
+          <td>{{response.[12].won}}</td>
+          <td>{{response.[12].draw}}</td>
+          <td>{{response.[12].lost}}</td>
+          <td>{{response.[12].goalsFor}}</td>
+          <td>{{response.[12].goalsAgainst}}</td>
+          <td>{{response.[12].goalDifference}}</td>
+          <td>{{response.[12].points}}</td>
+        </tr>
+        <tr>
+          <th scope="row">14</th>
+          <td>{{response.[13].team.name}}</td>
+          <td>{{response.[13].playedGames}}</td>
+          <td>{{response.[13].won}}</td>
+          <td>{{response.[13].draw}}</td>
+          <td>{{response.[13].lost}}</td>
+          <td>{{response.[13].goalsFor}}</td>
+          <td>{{response.[13].goalsAgainst}}</td>
+          <td>{{response.[13].goalDifference}}</td>
+          <td>{{response.[13].points}}</td>
+        </tr>
+        <tr>
+          <th scope="row">15</th>
+          <td>{{response.[14].team.name}}</td>
+          <td>{{response.[14].playedGames}}</td>
+          <td>{{response.[14].won}}</td>
+          <td>{{response.[14].draw}}</td>
+          <td>{{response.[14].lost}}</td>
+          <td>{{response.[14].goalsFor}}</td>
+          <td>{{response.[14].goalsAgainst}}</td>
+          <td>{{response.[14].goalDifference}}</td>
+          <td>{{response.[14].points}}</td>
+        </tr>
+        <tr>
+          <th scope="row">16</th>
+          <td>{{response.[15].team.name}}</td>
+          <td>{{response.[15].playedGames}}</td>
+          <td>{{response.[15].won}}</td>
+          <td>{{response.[15].draw}}</td>
+          <td>{{response.[15].lost}}</td>
+          <td>{{response.[15].goalsFor}}</td>
+          <td>{{response.[15].goalsAgainst}}</td>
+          <td>{{response.[15].goalDifference}}</td>
+          <td>{{response.[15].points}}</td>
+        </tr>
+        <tr>
+          <th scope="row">17</th>
+          <td>{{response.[16].team.name}}</td>
+          <td>{{response.[16].playedGames}}</td>
+          <td>{{response.[16].won}}</td>
+          <td>{{response.[16].draw}}</td>
+          <td>{{response.[16].lost}}</td>
+          <td>{{response.[16].goalsFor}}</td>
+          <td>{{response.[16].goalsAgainst}}</td>
+          <td>{{response.[16].goalDifference}}</td>
+          <td>{{response.[16].points}}</td>
+        </tr>
+        <tr>
+          <th scope="row">18</th>
+          <td>{{response.[17].team.name}}</td>
+          <td>{{response.[17].playedGames}}</td>
+          <td>{{response.[17].won}}</td>
+          <td>{{response.[17].draw}}</td>
+          <td>{{response.[17].lost}}</td>
+          <td>{{response.[17].goalsFor}}</td>
+          <td>{{response.[17].goalsAgainst}}</td>
+          <td>{{response.[17].goalDifference}}</td>
+          <td>{{response.[17].points}}</td>
+        </tr>
+        <tr>
+          <th scope="row">19</th>
+          <td>{{response.[18].team.name}}</td>
+          <td>{{response.[18].playedGames}}</td>
+          <td>{{response.[18].won}}</td>
+          <td>{{response.[18].draw}}</td>
+          <td>{{response.[18].lost}}</td>
+          <td>{{response.[18].goalsFor}}</td>
+          <td>{{response.[18].goalsAgainst}}</td>
+          <td>{{response.[18].goalDifference}}</td>
+          <td>{{response.[18].points}}</td>
+        </tr>
+        <tr>
+          <th scope="row">20</th>
+          <td>{{response.[19].team.name}}</td>
+          <td>{{response.[19].playedGames}}</td>
+          <td>{{response.[19].won}}</td>
+          <td>{{response.[19].draw}}</td>
+          <td>{{response.[19].lost}}</td>
+          <td>{{response.[19].goalsFor}}</td>
+          <td>{{response.[19].goalsAgainst}}</td>
+          <td>{{response.[19].goalDifference}}</td>
+          <td>{{response.[19].points}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="/js/table.js"></script>
 </body>
-</div>
-
 </html>

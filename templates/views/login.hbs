@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/homestyles.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>MyFootball101</title>
+</head>
+<body>
+  
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="/img/start_icon.png" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form action="/home">
+      <input type="email" id="email" class="fadeIn fourth" name="login" placeholder="email" required>
+      <input type="password" id="password" class="fadeIn fifth" name="login" placeholder="password" required>
+      {{!-- <button id="signup"><a style="text-decoration:none; color: black" href="/home">Sign Up</a></button> --}}
+      <input type="submit" id ="sign" class="fadeIn sixth" name="login" value="Login">
+    </form>
+
+    <div id="formFooter">
+      <p>Don't have an account? <a class="underlineHover" href="/entry">Register</a></p>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/js/checkLogin.js"></script>"
+
+</html>
